@@ -181,9 +181,9 @@ inline void rotateaxis(V3 *v, int from, int to, double angle)
 
 void rotate(V3 *v, double *angles)
 {
-	rotateaxis(v, 0, 1, angles[0]);	
-	rotateaxis(v, 0, 2, angles[1]);	
-	rotateaxis(v, 1, 2, angles[2]);	
+	rotateaxis(v, 0, 1, angles[0]);
+	rotateaxis(v, 0, 2, angles[1]);
+	rotateaxis(v, 1, 2, angles[2]);
 }
 
 void project(V3 *v, double eyeZ)
@@ -236,7 +236,7 @@ void do_it()
 		project(&points[i], eyeZ);
 		spoints[i]=transform(points[i]);
 	}
-		
+
 	SDL_FillRect(screen, &blah, black);
 
 	// use different colors for different parts of the cube:
@@ -271,7 +271,7 @@ void do_it()
 	SDL_UpdateRect(screen, 0, 0, width, height);
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 	// Graphics init
 	if(SDL_Init(SDL_INIT_VIDEO)==-1) {
@@ -311,7 +311,7 @@ int main()
 		SDL_Delay(TimeLeft());
 		SDL_Event event;
 		SDL_PollEvent(&event);
-	
+
 		if(event.type==SDL_KEYDOWN && event.key.keysym.sym==SDLK_ESCAPE) {
 			SDL_Quit();
 			exit(0);

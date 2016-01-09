@@ -173,7 +173,7 @@ void init_lines(int *lines)
 		lines[(i<<1)+16]=i;
 		lines[(i<<1)+17]=i+4;
 	}
-	
+
 	for(int i=0; i<24; i++)
 		lines[i+24]=lines[i]+8;
 
@@ -202,12 +202,12 @@ inline void rotateaxis(V4 *v, int from, int to, double angle)
 
 void rotate(V4 *v, double *angles)
 {
-	rotateaxis(v, 0, 1, angles[0]);	
-	rotateaxis(v, 0, 2, angles[1]);	
-	rotateaxis(v, 0, 3, angles[2]);	
-	rotateaxis(v, 1, 2, angles[3]);	
-	rotateaxis(v, 1, 3, angles[4]);	
-	rotateaxis(v, 2, 3, angles[5]);	
+	rotateaxis(v, 0, 1, angles[0]);
+	rotateaxis(v, 0, 2, angles[1]);
+	rotateaxis(v, 0, 3, angles[2]);
+	rotateaxis(v, 1, 2, angles[3]);
+	rotateaxis(v, 1, 3, angles[4]);
+	rotateaxis(v, 2, 3, angles[5]);
 }
 
 // projection from 4d to 3d, and from 3d to 2d ...
@@ -243,7 +243,7 @@ Uint32 timeleft()
 	return(next_time-now);
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 	// Graphics init
 	SDL_Surface *screen = NULL;
@@ -314,7 +314,7 @@ int main()
 			project(&points[i], eyeW, eyeZ);
 			spoints[i]=transform(points[i]);
 		}
-			
+
 		SDL_FillRect(screen, &blah, black);
 
 		// use different colors for different parts of the cube:

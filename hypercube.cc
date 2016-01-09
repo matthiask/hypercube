@@ -178,7 +178,7 @@ void init_lines(int *lines)
 		lines[(i<<1)+16]=i;
 		lines[(i<<1)+17]=i+4;
 	}
-	
+
 	for(int i=0; i<24; i++)
 		lines[i+24]=lines[i]+8;
 
@@ -207,12 +207,12 @@ inline void rotateaxis(V4 *v, int from, int to, double angle)
 
 void rotate(V4 *v, double *angles)
 {
-	rotateaxis(v, 0, 1, angles[0]);	
-	rotateaxis(v, 0, 2, angles[1]);	
-	rotateaxis(v, 0, 3, angles[2]);	
-	rotateaxis(v, 1, 2, angles[3]);	
-	rotateaxis(v, 1, 3, angles[4]);	
-	rotateaxis(v, 2, 3, angles[5]);	
+	rotateaxis(v, 0, 1, angles[0]);
+	rotateaxis(v, 0, 2, angles[1]);
+	rotateaxis(v, 0, 3, angles[2]);
+	rotateaxis(v, 1, 2, angles[3]);
+	rotateaxis(v, 1, 3, angles[4]);
+	rotateaxis(v, 2, 3, angles[5]);
 }
 
 // projection from 4d to 3d, and from 3d to 2d ...
@@ -234,7 +234,7 @@ S2 transform(V4 v)
 		  (int)((height>>1)+v.y*(height/6.5)));
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 	// Graphics init
 	SDL_Surface *screen = NULL;
@@ -290,7 +290,7 @@ int main()
 			project(&points[i], eyeW, eyeZ);
 			spoints[i]=transform(points[i]);
 		}
-			
+
 		SDL_FillRect(screen, &blah, black);
 
 		// use different colors for different parts of the cube:
@@ -328,14 +328,14 @@ int main()
 poll:
 		//SDL_PollEvent(&event);
 		SDL_WaitEvent(&event);
-		
+
 		if(event.type==SDL_KEYDOWN) {
 			switch(event.key.keysym.sym) {
 				case SDLK_ESCAPE:
 					SDL_Quit();
 					exit(0);
 					break;
-					
+
 				// rotation keys
 				case SDLK_KP9:
 					angles[0]+=0.1;
@@ -384,18 +384,18 @@ poll:
 				case SDLK_KP_DIVIDE:
 					angles[5]-=0.1;
 					break;
-					
+
 				// change camera distance
 				case SDLK_KP_PLUS:
 					eyeW+=0.2;
 					eyeZ+=0.2;
 					break;
-					
+
 				case SDLK_KP_MINUS:
 					eyeW-=0.2;
 					eyeZ-=0.2;
 					break;
-					
+
 				// re-initialize all values
 				case SDLK_KP_ENTER:
 				case SDLK_RETURN:
